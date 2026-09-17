@@ -14,6 +14,8 @@ The wherency annotation can be attached either to individual object handles to b
 
 By default, the pool uses an LRU algorithm for evicting objects to slower tiers. This can be overridden or disabled for objects / types. Domains of memory are bound to particular NUMA nodes. This can also simulate a CXL workload as the slowest tier of memory, acting like a headless NUMA node.
 
+<img width="2570" height="1713" alt="signal-2026-09-17-09-28-22-430" src="https://github.com/user-attachments/assets/b549c0a9-69a8-4c18-8dee-205826744edc" />
+
 ## Usage
 
 The library is available in the `include/hotpotato/` directory. To use it, copy `include/hotpotato` into your project and `#include "hotpotato/tiered_pool.hpp"`. A full example showing handle-level placement, type-level cold pools, and runtime promote / demote can be found in `main.cpp`. To use HotPotato:
