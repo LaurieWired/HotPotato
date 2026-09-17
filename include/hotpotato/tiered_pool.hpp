@@ -224,21 +224,21 @@ public:
     Allocation API
     */
     
-    // handle-declaration annotations; unannotated handles default to likely / evictable
+    // handle-declaration annotations; missing Evictable falls back to T, then true
     template <std::meta::info Declaration, class... Args>
     std::optional<Handle<T>> allocate(Args&&... args) {
         static_assert(std::meta::is_variable(Declaration), 
             "HotPotato: allocate<...> expects a reflection of a Handle variable");
         constexpr Wherency where = wherency_annotation(Declaration).value_or(Wherency{});
-        constexpr bool evictable = evictable_annotation(Declaration).value_or(true);
+        constexpr bool evictable = evictable_annotation(Declaration).value_or(type_evictable());
 
         return allocate_impl(where, evictable, std::forward<Args>(args)...);
     }
 
-    // unannotated allocate uses defaults (likely / evictable)
+    // unannotated allocate: likely, Evictable from T if present
     template <class... Args>
     std::optional<Handle<T>> allocate(Args&&... args) {
-        return allocate_impl(Wherency{}, true, std::forward<Args>(args)...);
+        return allocate_impl(Wherency{}, type_evictable(), std::forward<Args>(args)...);
     }
 
     bool deallocate(Handle<T>& h) {
@@ -363,6 +363,10 @@ public:
     }
 
 private:
+    static consteval bool type_evictable() {
+        return evictable_annotation(^^T).value_or(true);
+    }
+
     template <class... Args>
     std::optional<Handle<T>> allocate_impl(Wherency where, bool evictable, Args&&... args) {
         if (domains_.empty() || tiers_.empty()) return std::nullopt;

@@ -68,7 +68,7 @@ int main() {
 
 ### Example 2
 
-A type-level `unlikely` annotation places the whole pool on the farthest NUMA nodes. Individual handles can still override that default:
+A type-level `unlikely` annotation places the whole pool on the farthest NUMA nodes, and `Evictable{false}` pins every object against LRU unless a handle overrides it:
 
 ```cpp
 #include <cstdint>
