@@ -145,7 +145,7 @@ public:
         // type-level likely / unlikely defines what nodes the pool is placed on
         // object-level likely is still the nearest selected node
         constexpr Wherency type_wherency = wherency_annotation(^^T).value_or(Wherency{});
-        constexpr bool far_nodes = (type_wherency.type == Wherency::kind::unlikely);
+        [[maybe_unused]] constexpr bool far_nodes = (type_wherency.type == Wherency::kind::unlikely);
 
 #ifdef HOTPOTATO_HAS_NUMA
         if (numa_supported()) {
