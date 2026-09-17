@@ -1,3 +1,5 @@
+<img width="2301" height="971" alt="hot_potato_logo" src="https://github.com/user-attachments/assets/2d1e9ad0-1ef7-4e0e-8c02-5096b132b12d" />
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![GitHub stars](https://img.shields.io/github/stars/LaurieWired/HotPotato)](https://github.com/LaurieWired/HotPotato/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/LaurieWired/HotPotato)](https://github.com/LaurieWired/HotPotato/network/members)
